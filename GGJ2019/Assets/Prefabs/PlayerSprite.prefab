@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4767970060936548}
   - component: {fileID: 212328878310419774}
   - component: {fileID: 114428436972615240}
+  - component: {fileID: 50913856246889876}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -106,6 +107,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!50 &50913856246889876
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073800612931688}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!102 &102276076595337150
 TextMesh:
   serializedVersion: 3
@@ -139,6 +160,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textmesh: {fileID: 102276076595337150}
+  mainCamera: {fileID: 0}
+  food: 100
+  inventory: 0
+  maxFood: 0
+  maxInventory: 0
 --- !u!212 &212328878310419774
 SpriteRenderer:
   m_ObjectHideFlags: 1

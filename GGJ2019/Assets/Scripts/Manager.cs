@@ -61,7 +61,7 @@ public class Manager : MonoBehaviour
             while (!result.EndOfMessage);
 
 			string str = Encoding.UTF8.GetString(buffer.Array);
-            Debug.Log(str);
+            //Debug.Log(str);
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
  
 			if (initGame == false) { 

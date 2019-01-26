@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HomeScript : MonoBehaviour {
 
@@ -23,10 +21,5 @@ public class HomeScript : MonoBehaviour {
 		foodGoal = homeRef.foodGoal;
 		reservePop = homeRef.reservePop;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }
