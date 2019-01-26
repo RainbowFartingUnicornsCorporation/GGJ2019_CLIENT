@@ -1,7 +1,18 @@
 ﻿using UnityEngine;
 
-public class ServerHandler : MonoBehaviour
+public class ServerHandler
 {
+    private static ServerHandler serverHandler;
+
+    public static ServerHandler GetServerHandler()
+    {
+        if (serverHandler == null)
+        {
+            serverHandler = new ServerHandler();
+        }
+        return serverHandler;
+    }
+
     private System.Diagnostics.Process serverProcess;
 
     public void StartServer()
@@ -22,8 +33,8 @@ public class ServerHandler : MonoBehaviour
         Debug.Log("Server stopped");
     }
 
-    void OnApplicationQuit()
+    public bool IsUp()
     {
-        StopServer();
+        return serverProcess != null && !serverProcess.HasExited;
     }
 }
