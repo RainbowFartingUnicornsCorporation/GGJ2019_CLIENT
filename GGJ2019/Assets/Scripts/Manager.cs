@@ -80,7 +80,6 @@ public class Manager : MonoBehaviour
             {
                 result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
 				ms.Write(buffer.Array, buffer.Offset, result.Count);
-				Debug.Log ("test");
             }
 			while (!result.EndOfMessage);
 			comPull = true;
@@ -93,8 +92,8 @@ public class Manager : MonoBehaviour
 
 			
 				// Init home
-				home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
-				home.GetComponent<HomeScript> ().UpdateHome (obj.home);
+				//home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
+				Home.GetComponent<HomeScript>().UpdateHome (obj.home);
 
 				// Init player
 				player = Instantiate (Player, new Vector3 (obj.player.posX, obj.player.posY, 0), transform.rotation) as GameObject;
@@ -119,7 +118,7 @@ public class Manager : MonoBehaviour
 
 			} else {
 				// update Home
-				home.GetComponent<HomeScript> ().UpdateHome (obj.home);
+				Home.GetComponent<HomeScript> ().UpdateHome (obj.home);
 				// update Player
 				player.GetComponent<PlayerScript> ().UpdatePlayer (obj.player);
 				// update Ressource

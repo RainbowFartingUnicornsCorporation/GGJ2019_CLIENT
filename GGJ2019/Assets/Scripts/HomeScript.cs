@@ -8,6 +8,11 @@ public class HomeScript : MonoBehaviour {
 	public int foodGoal;
 	public int reservePop;
 
+	public GameObject foodNum;
+	public GameObject ressourcesNum;
+	public GameObject populationNum;
+	public GameObject reservePopNum;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +25,11 @@ public class HomeScript : MonoBehaviour {
 		population = homeRef.population;
 		foodGoal = homeRef.foodGoal;
 		reservePop = homeRef.reservePop;
+
+		foodNum.GetComponent<TextMesh> ().text = "Food " + food;
+		ressourcesNum.GetComponent<TextMesh> ().text = "Ressources " + ressources;
+		populationNum.GetComponent<TextMesh> ().text = "Population " + population;
+		reservePopNum.GetComponent<TextMesh> ().text = reservePop + " worker idle";
 
 	}
 }
