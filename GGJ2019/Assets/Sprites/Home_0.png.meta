@@ -10,6 +10,13 @@ TextureImporter:
     21300010: fire_5
     21300012: fire_6
     21300014: fire_7
+    21300016: Home_0_0
+    21300018: Home_0_1
+    21300020: Home_0_2
+    21300022: Home_0_3
+    21300024: Home_0_4
+    21300026: Home_0_5
+    21300028: Home_0_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -87,12 +94,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fire_0
+      name: Home_0_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1350
+        width: 1410
         height: 1670
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -101,12 +108,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: fire_1
+      name: Home_0_1
       rect:
         serializedVersion: 2
-        x: 1350
+        x: 1410
         y: 0
-        width: 1350
+        width: 1410
         height: 1670
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,12 +122,12 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: fire_2
+      name: Home_0_2
       rect:
         serializedVersion: 2
-        x: 2700
+        x: 2820
         y: 0
-        width: 1350
+        width: 1410
         height: 1670
       alignment: 0
       pivot: {x: 0, y: 0}
