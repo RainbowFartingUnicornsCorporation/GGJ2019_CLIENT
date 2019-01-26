@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour {
 		transform.position = new Vector3 (x, y, 0);
 	}
 
-	public void updatePlayer(Player playerRef){
+	public void UpdatePlayer(Player playerRef){
 		if (init == false) {
 			textmesh.text = playerRef.name;
 			init = true;

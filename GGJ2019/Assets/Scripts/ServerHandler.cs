@@ -34,8 +34,11 @@ public class ServerHandler
             Debug.Log("No need to stop server");
             return;
         }
-        serverProcess.Kill();
-        Debug.Log("Server stopped");
+        else
+        {
+            serverProcess.Kill();
+            Debug.Log("Server stopped");
+        }
     }
 
     public bool IsUp()

@@ -97,7 +97,7 @@ public class Manager : MonoBehaviour
 				// update Home
 				home.GetComponent<HomeScript> ().updateHome (obj.home);
 				// update Player
-				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+				player.GetComponent<PlayerScript> ().UpdatePlayer (obj.player);
 				// update Ressource
 				foreach (Ressource rscData in obj.ressources){
 					foreach (GameObject rsc in ressources){
