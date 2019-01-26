@@ -70,11 +70,11 @@ public class Manager : MonoBehaviour
 			
 				// Init home
 				home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
-				home.GetComponent<HomeScript> ().updateHome (obj.home);
+				home.GetComponent<HomeScript> ().UpdateHome (obj.home);
 
 				// Init player
 				player = Instantiate (Player, new Vector3 (obj.player.posX, obj.player.posY, 0), transform.rotation) as GameObject;
-				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+				player.GetComponent<PlayerScript> ().UpdatePlayer (obj.player);
 				player.GetComponent<PlayerScript> ().mainCamera = mainCamera;
                 PlayerController playerController = player.AddComponent<PlayerController>();
                 playerController.SetPlayer(player);
@@ -85,7 +85,7 @@ public class Manager : MonoBehaviour
 				foreach (Ressource rsc in obj.ressources) {
 					var ressource = Instantiate (Ressource, new Vector3 (rsc.posX, rsc.posY, 0), transform.rotation) as GameObject;
 					Debug.Log (ressource);
-					ressource.GetComponent<RessourceScript> ().updateRessource (rsc);
+					ressource.GetComponent<RessourceScript> ().UpdateRessource (rsc);
 					ressources.Add (ressource);
 				}
 
@@ -95,14 +95,14 @@ public class Manager : MonoBehaviour
 
 			} else {
 				// update Home
-				home.GetComponent<HomeScript> ().updateHome (obj.home);
+				home.GetComponent<HomeScript> ().UpdateHome (obj.home);
 				// update Player
 				player.GetComponent<PlayerScript> ().UpdatePlayer (obj.player);
 				// update Ressource
 				foreach (Ressource rscData in obj.ressources){
 					foreach (GameObject rsc in ressources){
 						if (rsc.GetComponent<RessourceScript> ().getId () == rscData.id) {
-							rsc.GetComponent<RessourceScript> ().updateRessource (rscData);
+							rsc.GetComponent<RessourceScript> ().UpdateRessource (rscData);
 						}
 					}
 				}

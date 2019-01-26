@@ -15,7 +15,7 @@ public class HomeScript : MonoBehaviour {
 		
 	}
 
-	public void updateHome(Home homeRef) {
+	public void UpdateHome(Home homeRef) {
 
 		food = homeRef.food;
 		ressources = homeRef.ressources;

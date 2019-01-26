@@ -20,7 +20,7 @@ public class RessourceScript : MonoBehaviour {
 		return id;
 	}
 
-	public void updateRessource(Ressource ressourceRef){
+	public void UpdateRessource(Ressource ressourceRef){
 		// initialisation
 		if (init == false) {
 			id = ressourceRef.id;
