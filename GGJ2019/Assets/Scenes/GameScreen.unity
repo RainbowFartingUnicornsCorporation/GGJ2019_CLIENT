@@ -140,6 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892d275cc2c39994a8ec28731ab10d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Home: {fileID: 1516796456473190, guid: 793a81738a11af244a650fcaf5306937, type: 2}
+  Player: {fileID: 1073800612931688, guid: 9aa5955d8a4f1854eb2c38cabbf7ddcb, type: 2}
+  Flux: {fileID: 1562433616246550, guid: 4fca83370535cd54a8ecc8e7976e8592, type: 2}
+  Ressource: {fileID: 1353737619387470, guid: fd4579907928bb34a82db3cc9dc4eca0, type: 2}
 --- !u!4 &1388722504
 Transform:
   m_ObjectHideFlags: 0
@@ -147,7 +151,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1388722502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 584.3815, y: 278.56442, z: -3.4095588}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

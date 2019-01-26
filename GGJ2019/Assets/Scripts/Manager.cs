@@ -12,8 +12,15 @@ using System.Collections.Generic;
 
 public class Manager : MonoBehaviour
 {
-    public ClientWebSocket clientWebSocket;
+	public ClientWebSocket clientWebSocket;
+
+	public GameObject Home;
+	public GameObject Player;
+	public GameObject Flux;
+	public GameObject Ressource;
+
     private Task<WebSocketReceiveResult> task;
+
 
     // Use this for initialization
     void Start()
@@ -50,6 +57,13 @@ public class Manager : MonoBehaviour
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
  
 			Debug.Log(obj.player.name);
+
+			var homeInstance = Instantiate (Home, transform) as GameObject;
+
+
+			var playerInstance = Instantiate (Player, new Vector3(obj.player.posX,obj.player.posY,0),transform.rotation) as GameObject;
+			var playerScript = playerInstance.GetComponent<PlayerScript>();
+			playerScript.updatePlayerName (obj.player.name);
 
         }
     }

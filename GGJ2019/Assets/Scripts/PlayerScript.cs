@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () { // Get data from initialization
-		textmesh.text = "PlayerNameSetted";
 	}
 
 
@@ -16,9 +15,8 @@ public class PlayerScript : MonoBehaviour {
 		transform.position = new Vector3 (x, y, 0);
 	}
 
-	void updatePlayerName(string PlayerName){
-		
-
+	public void updatePlayerName(string playerName){
+		textmesh.text = playerName;
 	}
 
 	
