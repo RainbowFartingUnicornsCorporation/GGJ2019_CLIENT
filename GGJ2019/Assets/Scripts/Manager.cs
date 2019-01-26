@@ -54,7 +54,7 @@ public class Manager : MonoBehaviour
 	public async void PushWebSocket()
 	{
 		
-			if (tick < 20) {
+			if (tick < 40) {
 				tick++;
 			} else {
 				//string test = "dqsdqsd";
