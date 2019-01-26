@@ -24,6 +24,10 @@ public class Manager : MonoBehaviour
 
 	private bool initGame = false;
 
+	private bool comPull = true;
+	private bool init = false;
+	private int tick = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -35,12 +39,37 @@ public class Manager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        PullWebSocket();
+    {	
+		if (init && comPull) {
+			comPull = false;
+			PullWebSocket ();
+		}
+
+
+		if (init && initGame) {
+			PushWebSocket ();
+		}
     }
+
+	public async void PushWebSocket()
+	{
+		
+			if (tick < 20) {
+				tick++;
+			} else {
+				//string test = "dqsdqsd";
+				ArraySegment<Byte> msg = new ArraySegment<byte> (
+					                        Encoding.UTF8.GetBytes ("{\"event\":\"position\",\"x\":\"" + player.transform.position.x + "\",\"y\":\"" + player.transform.position.y + "\"}")
+				                        );
+				await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
+				tick = 0;
+			}
+	}
+
 
     public async void PullWebSocket()
     {
+
         ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[8192]);
 
         WebSocketReceiveResult result = null;
@@ -50,17 +79,18 @@ public class Manager : MonoBehaviour
             do
             {
                 result = await clientWebSocket.ReceiveAsync(buffer, CancellationToken.None);
-                ms.Write(buffer.Array, buffer.Offset, result.Count);
+				ms.Write(buffer.Array, buffer.Offset, result.Count);
+				Debug.Log ("test");
             }
-            while (!result.EndOfMessage);
+			while (!result.EndOfMessage);
+			comPull = true;
 
 			string str = Encoding.UTF8.GetString(buffer.Array);
             //Debug.Log(str);
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
- 
+
 			if (initGame == false) { 
 
-				initGame = true;
 			
 				// Init home
 				home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
@@ -72,7 +102,6 @@ public class Manager : MonoBehaviour
 				player.GetComponent<PlayerScript> ().mainCamera = mainCamera;
                 PlayerController playerController = player.AddComponent<PlayerController>();
                 playerController.SetPlayer(player);
-			
 
                 // Init Ressource
                 ressources = new List<GameObject>();
@@ -84,6 +113,7 @@ public class Manager : MonoBehaviour
 				}
 
 
+				initGame = true;
 				// Init Flux
 				flux = new List<GameObject>();
 
@@ -115,6 +145,7 @@ public class Manager : MonoBehaviour
                      Encoding.UTF8.GetBytes("{\"event\":\"new\",\"name\":\"Bob\"}")
                  );
         await clientWebSocket.SendAsync(msg, WebSocketMessageType.Text, true, CancellationToken.None);
+		init = true;
     }
 
     void OnApplicationQuit()
