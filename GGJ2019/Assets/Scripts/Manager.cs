@@ -72,9 +72,11 @@ public class Manager : MonoBehaviour
 				// Init player
 				player = Instantiate (Player, new Vector3 (obj.player.posX, obj.player.posY, 0), transform.rotation) as GameObject;
 				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+                PlayerController playerController = player.AddComponent<PlayerController>();
+                playerController.SetPlayer(player);
 
-				// Init Ressource
-				ressources = new List<GameObject>();
+                // Init Ressource
+                ressources = new List<GameObject>();
 				foreach (Ressource rsc in obj.ressources) {
 					var ressource = Instantiate (Ressource, new Vector3 (rsc.posX, rsc.posY, 0), transform.rotation) as GameObject;
 					Debug.Log (ressource);
@@ -100,7 +102,6 @@ public class Manager : MonoBehaviour
 					}
 				}
 			}
-
         }
     }
 
