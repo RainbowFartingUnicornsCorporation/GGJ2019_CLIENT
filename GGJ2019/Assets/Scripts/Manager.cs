@@ -19,6 +19,13 @@ public class Manager : MonoBehaviour
 	public GameObject Flux;
 	public GameObject Ressource;
 
+	private GameObject player;
+	private GameObject home;
+	private List<GameObject> flux;
+	private List<GameObject> ressources;
+
+	private bool initGame = false;
+
     private Task<WebSocketReceiveResult> task;
 
 
@@ -56,14 +63,43 @@ public class Manager : MonoBehaviour
             Debug.Log(str);
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
  
-			Debug.Log(obj.player.name);
+			if (initGame == false) { 
+			
+				// Init home
+				home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
+				home.GetComponent<HomeScript> ().updateHome (obj.home);
 
-			var homeInstance = Instantiate (Home, transform) as GameObject;
+				// Init player
+				player = Instantiate (Player, new Vector3 (obj.player.posX, obj.player.posY, 0), transform.rotation) as GameObject;
+				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+
+				// Init Ressource
+				ressources = new List<GameObject>();
+				foreach (Ressource rsc in obj.ressources) {
+					var ressource = Instantiate (Ressource, new Vector3 (rsc.posX, rsc.posY, 0), transform.rotation) as GameObject;
+					Debug.Log (ressource);
+					ressource.GetComponent<RessourceScript> ().updateRessource (rsc);
+					ressources.Add (ressource);
+				}
 
 
-			var playerInstance = Instantiate (Player, new Vector3(obj.player.posX,obj.player.posY,0),transform.rotation) as GameObject;
-			var playerScript = playerInstance.GetComponent<PlayerScript>();
-			playerScript.updatePlayerName (obj.player.name);
+				// Init Flux
+				flux = new List<GameObject>();
+
+			} else {
+				// update Home
+				home.GetComponent<HomeScript> ().updateHome (obj.home);
+				// update Player
+				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+				// update Ressource
+				foreach (Ressource rscData in obj.ressources){
+					foreach (GameObject rsc in ressources){
+						if (rsc.GetComponent<RessourceScript> ().getId () == rscData.id) {
+							rsc.GetComponent<RessourceScript> ().updateRessource (rscData);
+						}
+					}
+				}
+			}
 
         }
     }
