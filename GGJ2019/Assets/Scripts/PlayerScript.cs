@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -9,6 +10,10 @@ public class PlayerScript : MonoBehaviour {
 	public int inventory;
 	public int maxFood;
 	public int maxInventory;
+	public GameObject maxFoodText;
+	public GameObject maxInventoryText;
+	public GameObject foodText;
+	public GameObject inventoryText;
 
 	// Use this for initialization
 	void Start () { // Get data from initisalization
@@ -30,6 +35,12 @@ public class PlayerScript : MonoBehaviour {
 		maxFood = playerRef.maxFood;
 		maxInventory = playerRef.maxInventory;
 		inventory = playerRef.inventory;
+
+
+		maxFoodText.GetComponent<Text>().text = "/ "+maxFood.ToString();
+		maxInventoryText.GetComponent<Text>().text = "/ "+maxInventory.ToString();
+		foodText.GetComponent<Text>().text = food.ToString();
+		inventoryText.GetComponent<Text>().text = inventory.ToString();
 
 
 	}
