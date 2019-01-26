@@ -4,6 +4,8 @@ public class PlayerController : MonoBehaviour {
 
     private bool atHome = true;
     private GameObject instance;
+    private Animator animator;
+
     public float speed = 5;
 
     public void SetPlayer(GameObject instance)
@@ -13,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,20 @@ public class PlayerController : MonoBehaviour {
 
         float translationX = speed * Input.GetAxis("Vertical") * Time.deltaTime;
         float translationY = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+
+        animator.SetBool("Left", false);
+        animator.SetBool("Right", false);
+        animator.SetBool("Up", false);
+        animator.SetBool("Down", false);
+
+        if (Input.GetAxis("Vertical") > 0)
+            animator.SetBool("Up", true);
+        else if (Input.GetAxis("Vertical") < 0)
+            animator.SetBool("Down", true);
+        else if(Input.GetAxis("Horizontal") < 0)
+            animator.SetBool("Left", true);
+        else if (Input.GetAxis("Horizontal") > 0)
+            animator.SetBool("Right", true);
 
         transform.Translate(translationY, translationX, 0);
     }
