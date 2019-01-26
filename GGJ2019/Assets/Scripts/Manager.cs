@@ -59,7 +59,7 @@ public class Manager : MonoBehaviour
 			} else {
 				//string test = "dqsdqsd";
 				ArraySegment<Byte> msg = new ArraySegment<byte> (
-					                        Encoding.UTF8.GetBytes ("{\"event\":\"position\",\"x\":\"" + player.transform.position.x + "\",\"y\":\"" + player.transform.position.y + "\"}")
+					                        Encoding.UTF8.GetBytes ("{\"event\":\"position\",\"x\":" + Math.Ceiling(player.transform.position.x) + ",\"y\":" + Math.Ceiling(player.transform.position.y) + "}")
 				                        );
 				await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
 				tick = 0;
