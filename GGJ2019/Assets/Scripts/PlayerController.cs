@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
     private GameObject instance;
     private Animator animator;
 
-    public float speed = 5;
+    public float speed = 15;
 
     public void SetPlayer(GameObject instance)
     {
