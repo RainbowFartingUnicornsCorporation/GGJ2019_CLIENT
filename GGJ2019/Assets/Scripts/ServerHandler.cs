@@ -3,6 +3,7 @@
 public class ServerHandler
 {
     private static ServerHandler serverHandler;
+    private System.Diagnostics.Process serverProcess;
 
     public static ServerHandler GetServerHandler()
     {
@@ -13,9 +14,7 @@ public class ServerHandler
         }
         return serverHandler;
     }
-
-    private System.Diagnostics.Process serverProcess;
-
+    
     public void StartServer()
     {
         if (serverProcess != null) return;

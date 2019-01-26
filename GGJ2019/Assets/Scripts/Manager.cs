@@ -3,10 +3,7 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Net.WebSockets;
-using System.Threading.Tasks;
 using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Runtime.Serialization;
 using System.Collections.Generic;
 
 
@@ -26,9 +23,6 @@ public class Manager : MonoBehaviour
 	private List<GameObject> ressources;
 
 	private bool initGame = false;
-
-    private Task<WebSocketReceiveResult> task;
-
 
     // Use this for initialization
     void Start()
