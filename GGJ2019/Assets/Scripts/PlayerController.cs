@@ -3,6 +3,7 @@
 public class PlayerController : MonoBehaviour {
 
     private bool atHome = true;
+    private bool atResource = true;
     private GameObject instance;
     private Animator animator;
 
@@ -42,6 +43,13 @@ public class PlayerController : MonoBehaviour {
             animator.SetBool("Right", true);
 
         transform.Translate(translationY, translationX, 0);
+
+        if (atResource && Input.GetButtonDown("Action"))
+        {
+            string message = "{\"event\":\"activateFlux\"}";
+            Manager.PushWebSocket(message);
+            Debug.Log(message);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -50,13 +58,14 @@ public class PlayerController : MonoBehaviour {
         {
             atHome = true;
         }
+        if (other.tag == "Resource")
+        {
+            atResource = true;
+        }
     }
 
     public void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Resource")
-        {
-        }
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -64,6 +73,10 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Home")
         {
             atHome = false;
+        }
+        if (other.tag == "Resource")
+        {
+            atResource = false;
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 public class Manager : MonoBehaviour
 {
-	public ClientWebSocket clientWebSocket;
+	public static ClientWebSocket clientWebSocket;
 
 	public GameObject Home;
 	public GameObject Player;
@@ -25,8 +25,8 @@ public class Manager : MonoBehaviour
 	private bool initGame = false;
 
 	private bool comPull = true;
-	private bool init = false;
-	private int tick = 0;
+	private static bool init = false;
+	private static int tick = 0;
 
     // Use this for initialization
     void Start()
@@ -45,31 +45,27 @@ public class Manager : MonoBehaviour
 			PullWebSocket ();
 		}
 
-
 		if (init && initGame) {
-			PushWebSocket ();
+            string message = "{\"event\":\"position\",\"x\":" + Math.Ceiling(player.transform.position.x) + ",\"y\":" + Math.Ceiling(player.transform.position.y) + "}";
+            PushWebSocket(message);
 		}
     }
 
-	public async void PushWebSocket()
+	public static async void PushWebSocket(string message)
 	{
-		
-			if (tick < 40) {
-				tick++;
-			} else {
-				//string test = "dqsdqsd";
-				ArraySegment<Byte> msg = new ArraySegment<byte> (
-					                        Encoding.UTF8.GetBytes ("{\"event\":\"position\",\"x\":" + Math.Ceiling(player.transform.position.x) + ",\"y\":" + Math.Ceiling(player.transform.position.y) + "}")
-				                        );
-				await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
-				tick = 0;
-			}
+        if (!init) return;
+		if (tick < 40) {
+			tick++;
+		} else {
+			ArraySegment<Byte> msg = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
+			await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
+			tick = 0;
+		}
 	}
 
 
     public async void PullWebSocket()
     {
-
         ArraySegment<Byte> buffer = new ArraySegment<byte>(new Byte[8192]);
 
         WebSocketReceiveResult result = null;
@@ -85,7 +81,6 @@ public class Manager : MonoBehaviour
 			comPull = true;
 
 			string str = Encoding.UTF8.GetString(buffer.Array);
-            //Debug.Log(str);
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
 
 			if (initGame == false) { 

@@ -41,15 +41,11 @@ public class PlayerScript : MonoBehaviour {
 		maxInventoryText.GetComponent<Text>().text = "/ "+maxInventory.ToString();
 		foodText.GetComponent<Text>().text = food.ToString();
 		inventoryText.GetComponent<Text>().text = inventory.ToString();
-
-
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
-
-		mainCamera.transform.position = new Vector3 (transform.position.x, transform.position.y, mainCamera.transform.position.z);
-		
+		mainCamera.transform.position = new Vector3 (transform.position.x, transform.position.y, mainCamera.transform.position.z);		
 	}
 }
