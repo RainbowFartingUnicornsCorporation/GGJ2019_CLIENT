@@ -8,6 +8,7 @@ public class ServerHandler
     {
         if (serverHandler == null)
         {
+            Debug.Log("New server handler");
             serverHandler = new ServerHandler();
         }
         return serverHandler;
@@ -28,7 +29,11 @@ public class ServerHandler
 
     public void StopServer()
     {
-        if (serverProcess == null || serverProcess.HasExited) return; 
+        if (serverProcess == null || serverProcess.HasExited)
+        {
+            Debug.Log("No need to stop server");
+            return;
+        }
         serverProcess.Kill();
         Debug.Log("Server stopped");
     }
