@@ -8,9 +8,12 @@ public class FluxScript : MonoBehaviour {
 	public GameObject home;
 	public GameObject ressource;
 	private bool forwardRsc = true;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
+		animator = this.GetComponent<Animator> ();
+		animator.SetBool("goingRight", true);
 		
 	}
 	
@@ -23,6 +26,12 @@ public class FluxScript : MonoBehaviour {
 
 		if (forwardRsc) {
 			var diff = rscPos - myPos;
+			if (diff.x >= 0) {
+				animator.SetBool ("goingRight", true);
+			}else{
+				animator.SetBool ("goingRight", false);
+			}
+			
 			if (diff.magnitude < 1) {
 				forwardRsc = false;
 			}
@@ -41,6 +50,11 @@ public class FluxScript : MonoBehaviour {
 		
 		} else {
 			var diff = homePos - myPos;
+			if (diff.x >= 0) {
+				animator.SetBool ("goingRight", true);
+			}else{
+				animator.SetBool ("goingRight", false);
+			}
 			if (diff.magnitude < 1) {
 				forwardRsc = true;
 			}
