@@ -18,6 +18,7 @@ public class Manager : MonoBehaviour
 	public GameObject Player;
 	public GameObject Flux;
 	public GameObject Ressource;
+	public Camera mainCamera;
 
 	private GameObject player;
 	private GameObject home;
@@ -64,6 +65,8 @@ public class Manager : MonoBehaviour
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
  
 			if (initGame == false) { 
+
+				initGame = true;
 			
 				// Init home
 				home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
@@ -72,8 +75,10 @@ public class Manager : MonoBehaviour
 				// Init player
 				player = Instantiate (Player, new Vector3 (obj.player.posX, obj.player.posY, 0), transform.rotation) as GameObject;
 				player.GetComponent<PlayerScript> ().updatePlayer (obj.player);
+				player.GetComponent<PlayerScript> ().mainCamera = mainCamera;
                 PlayerController playerController = player.AddComponent<PlayerController>();
                 playerController.SetPlayer(player);
+			
 
                 // Init Ressource
                 ressources = new List<GameObject>();

@@ -144,6 +144,7 @@ MonoBehaviour:
   Player: {fileID: 1073800612931688, guid: 9aa5955d8a4f1854eb2c38cabbf7ddcb, type: 2}
   Flux: {fileID: 1562433616246550, guid: 4fca83370535cd54a8ecc8e7976e8592, type: 2}
   Ressource: {fileID: 1353737619387470, guid: fd4579907928bb34a82db3cc9dc4eca0, type: 2}
+  mainCamera: {fileID: 1476295109}
 --- !u!4 &1388722504
 Transform:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

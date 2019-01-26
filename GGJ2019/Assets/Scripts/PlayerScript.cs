@@ -3,7 +3,7 @@
 public class PlayerScript : MonoBehaviour {
 
 	public TextMesh textmesh;
-
+	public Camera mainCamera;
 	public int food = 100;
 	private bool init = false;
 	public int inventory;
@@ -37,6 +37,8 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		mainCamera.transform.position = new Vector3 (transform.position.x, transform.position.y, mainCamera.transform.position.z);
 		
 	}
 }
