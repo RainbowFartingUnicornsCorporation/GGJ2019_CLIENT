@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         if (instance == null) return;
 
-        if (ps.food <= 90)
+        if (ps.food <= 0)
         {
             animator.SetBool("Dead", true);
             GameOver.GetInstance().SetActive(true);
