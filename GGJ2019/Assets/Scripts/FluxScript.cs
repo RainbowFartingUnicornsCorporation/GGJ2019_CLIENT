@@ -50,7 +50,7 @@ public class FluxScript : MonoBehaviour {
 				forwardRsc = false;
 
 			}
-			if (rscPos.magnitude - this.transform.position.magnitude < 5 ) {
+			if (rscPos.magnitude - this.transform.position.magnitude < 10 ) {
 				forwardRsc = false;
 
 			}
@@ -62,9 +62,7 @@ public class FluxScript : MonoBehaviour {
 			}else{
 				animator.SetBool ("goingRight", false);
 			}
-			if (diff.magnitude < 1) {
-				forwardRsc = true;
-			}
+
 			diff.z = 1;
 			diff = diff.normalized;
 			diff.x = diff.x * speed;
@@ -74,10 +72,9 @@ public class FluxScript : MonoBehaviour {
 				forwardRsc = true;
 			}
 			this.transform.Translate (diff);
-			if ((this.transform.position.x * rscPos.x) < 0) {
-				forwardRsc = true;
-			}
-			if (this.transform.position.magnitude < 5 ) {
+
+			Debug.Log (transform.position.magnitude);
+			if (transform.position.magnitude < 10 ) {
 				forwardRsc = true;
 
 			}
