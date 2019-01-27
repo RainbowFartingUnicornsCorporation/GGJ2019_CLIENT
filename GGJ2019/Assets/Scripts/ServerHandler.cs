@@ -15,13 +15,16 @@ public class ServerHandler
         return serverHandler;
     }
     
-    public void StartServer()
+    public void StartServer(bool debug)
     {
         if (serverProcess != null) return;
         string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "server.exe");
         System.Diagnostics.ProcessStartInfo info = new System.Diagnostics.ProcessStartInfo(filePath);
-        info.CreateNoWindow = true;
-        info.UseShellExecute = false;
+        if (!debug)
+        {
+            info.CreateNoWindow = true;
+            info.UseShellExecute = false;
+        }
         serverProcess = System.Diagnostics.Process.Start(info);
         Debug.Log("Server started");
     }
