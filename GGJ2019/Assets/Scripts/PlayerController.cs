@@ -50,6 +50,12 @@ public class PlayerController : MonoBehaviour {
             Manager.PushWebSocket(message);
             Debug.Log(message);
         }
+        if (atHome && Input.GetButtonDown("Action"))
+        {
+            string message = "{\"event\":\"getSrcHome\"}";
+            Manager.PushWebSocket(message);
+            Debug.Log(message);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
