@@ -27,6 +27,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         if (instance == null) return;
 
+        if (ps.food <= 90)
+        {
+            animator.SetBool("Dead", true);
+            GameOver.GetInstance().SetActive(true);
+            return;
+        }
+
         Transform transform = GetComponent<Transform>();
 
         float translationX = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
