@@ -27,6 +27,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         if (instance == null) return;
 
+        animator.SetBool("Left", false);
+        animator.SetBool("Right", false);
+        animator.SetBool("Up", false);
+        animator.SetBool("Down", false);
+        animator.SetBool("Buch", false);
+        animator.SetBool("Drop", false);
+
         if (ps.food <= 0)
         {
             animator.SetBool("Dead", true);
@@ -38,13 +45,6 @@ public class PlayerController : MonoBehaviour {
 
         float translationX = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
         float translationY = speed * Input.GetAxis("Vertical") * Time.deltaTime;
-
-        animator.SetBool("Left", false);
-        animator.SetBool("Right", false);
-        animator.SetBool("Up", false);
-        animator.SetBool("Down", false);
-        animator.SetBool("Buch", false);
-        animator.SetBool("Drop", false);
 
         if (atHome && ps.inventory > 0)
             animator.SetBool("Drop", true);
