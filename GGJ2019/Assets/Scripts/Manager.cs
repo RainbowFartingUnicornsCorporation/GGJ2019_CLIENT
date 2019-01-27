@@ -45,22 +45,23 @@ public class Manager : MonoBehaviour
 			PullWebSocket ();
 		}
 
-		if (init && initGame) {
+		if (init && initGame && tick >= 40) {
             string message = "{\"event\":\"position\",\"x\":" + Math.Ceiling(player.transform.position.x) + ",\"y\":" + Math.Ceiling(player.transform.position.y) + "}";
             PushWebSocket(message);
-		}
+            tick = 0;
+        } else
+        {
+            tick++;
+        }
     }
 
 	public static async void PushWebSocket(string message)
 	{
         if (!init) return;
-		if (tick < 40) {
-			tick++;
-		} else {
-			ArraySegment<Byte> msg = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
-			await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
-			tick = 0;
-		}
+
+        Debug.Log(message);
+        ArraySegment<Byte> msg = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
+		await clientWebSocket.SendAsync (msg, WebSocketMessageType.Text, true, CancellationToken.None);
 	}
 
 

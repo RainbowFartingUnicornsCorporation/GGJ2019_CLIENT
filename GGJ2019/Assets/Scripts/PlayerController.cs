@@ -50,13 +50,11 @@ public class PlayerController : MonoBehaviour {
         {
             string message = "{\"event\":\"activateFlux\"}";
             Manager.PushWebSocket(message);
-            Debug.Log(message);
         }
         if (atHome && Input.GetButtonDown("Action"))
         {
             string message = "{\"event\":\"getRscHome\"}";
             Manager.PushWebSocket(message);
-            Debug.Log(message);
         }
     }
 
@@ -65,12 +63,10 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Home")
         {
             atHome = true;
-            Debug.Log("a");
         }
         if (other.tag == "Resource")
         {
             atResource = true;
-            Debug.Log("b");
         }
     }
 
@@ -79,12 +75,10 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Home")
         {
             atHome = false;
-            Debug.Log("c");
         }
         if (other.tag == "Resource")
         {
             atResource = false;
-            Debug.Log("d");
         }
     }
 }
