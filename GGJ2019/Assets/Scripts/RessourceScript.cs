@@ -93,7 +93,7 @@ public class RessourceScript : MonoBehaviour {
 
     void OnGUI()
     {
-        if (size == 0 && spriteId != 0)
+        if (size <= 10 && spriteId != 0)
         {
             spriteId = 0;
             spriteRenderer.sprite = sprites[spriteId];
