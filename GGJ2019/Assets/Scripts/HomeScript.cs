@@ -43,17 +43,16 @@ public class HomeScript : MonoBehaviour
 		ressourcesNum.GetComponent<TextMesh> ().text = "Ressources " + ressources;
 		populationNum.GetComponent<TextMesh> ().text = "Population " + population;
 		reservePopNum.GetComponent<TextMesh> ().text = reservePop + " worker idle";
-
 	}
 
     void OnGUI()
     {
         if (spriteId == 0 && population > 0 ||
-            spriteId == 1 && population > 5 ||
-            spriteId == 2 && population > 10)
+            spriteId == 1 && population > 4 ||
+            spriteId == 2 && population > 9)
         {
+            Destroy(GetComponent<Animator>());
             spriteRenderer.sprite = sprites[spriteId];
-            GetComponent<Animator>().GetComponent<GameObject>().SetActive(false);
             spriteId++;
         }
     }
