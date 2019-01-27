@@ -23,6 +23,7 @@ public class FluxScript : MonoBehaviour {
 	void Update () {
 		// move through the line between ressource and homecenter
 		var rscPos = ressource;
+		rscPos.z = 0;
 		var myPos = this.transform.position;
 		var homePos = home;
 
@@ -33,10 +34,7 @@ public class FluxScript : MonoBehaviour {
 			}else{
 				animator.SetBool ("goingRight", false);
 			}
-			
-			if (diff.magnitude < 1) {
-				forwardRsc = false;
-			}
+
 			diff.z = 1;
 			diff = diff.normalized;
 			diff.x = diff.x * speed;
@@ -45,12 +43,14 @@ public class FluxScript : MonoBehaviour {
 
 
 
-			this.transform.Translate (diff);
-			if (this.transform.position.magnitude > rscPos.magnitude) {
+			transform.Translate (diff);
+			if (transform.position.magnitude > rscPos.magnitude) {
 				forwardRsc = false;
 
 			}
-			if (rscPos.magnitude - this.transform.position.magnitude < 10 ) {
+
+			if (rscPos.magnitude - transform.position.magnitude < 10 ) {
+				Debug.Log ("GOOOO BACK");
 				forwardRsc = false;
 
 			}
@@ -68,13 +68,10 @@ public class FluxScript : MonoBehaviour {
 			diff.x = diff.x * speed;
 			diff.y = diff.y * speed;
 			diff.z = 0;
-			if (diff.magnitude == 0) {
-				forwardRsc = true;
-			}
 			this.transform.Translate (diff);
 
-			Debug.Log (transform.position.magnitude);
-			if (transform.position.magnitude < 10 ) {
+			if (transform.position.magnitude < 10.0 ) {
+				Debug.Log ("TRUE");
 				forwardRsc = true;
 
 			}

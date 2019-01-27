@@ -168,6 +168,7 @@ MonoBehaviour:
   nbWorker: 0
   size: 0
   sizeMax: 0
+  FluxPrefab: {fileID: 1562433616246550, guid: 4fca83370535cd54a8ecc8e7976e8592, type: 2}
 --- !u!212 &212409428796362438
 SpriteRenderer:
   m_ObjectHideFlags: 1
