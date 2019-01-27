@@ -2,8 +2,8 @@
 
 public class PlayerController : MonoBehaviour {
 
-    private bool atHome = true;
-    private bool atResource = true;
+    private bool atHome;
+    private bool atResource;
     private GameObject instance;
     private Animator animator;
 
@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-	}
+        atHome = false;
+        atResource = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour {
         }
         if (atHome && Input.GetButtonDown("Action"))
         {
-            string message = "{\"event\":\"getSrcHome\"}";
+            string message = "{\"event\":\"getRscHome\"}";
             Manager.PushWebSocket(message);
             Debug.Log(message);
         }
@@ -63,15 +65,13 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Home")
         {
             atHome = true;
+            Debug.Log("a");
         }
         if (other.tag == "Resource")
         {
             atResource = true;
+            Debug.Log("b");
         }
-    }
-
-    public void OnTriggerStay2D(Collider2D other)
-    {
     }
 
     public void OnTriggerExit2D(Collider2D other)
@@ -79,10 +79,12 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Home")
         {
             atHome = false;
+            Debug.Log("c");
         }
         if (other.tag == "Resource")
         {
             atResource = false;
+            Debug.Log("d");
         }
     }
 }
