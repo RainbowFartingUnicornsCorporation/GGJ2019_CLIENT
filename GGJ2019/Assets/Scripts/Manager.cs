@@ -19,7 +19,6 @@ public class Manager : MonoBehaviour
 
 	private GameObject player;
 	private GameObject home;
-	private List<GameObject> flux;
 	private List<GameObject> ressources;
 
 	private bool initGame = false;
@@ -110,7 +109,6 @@ public class Manager : MonoBehaviour
 
 				initGame = true;
 				// Init Flux
-				flux = new List<GameObject>();
 
 			} else {
 				// update Home
