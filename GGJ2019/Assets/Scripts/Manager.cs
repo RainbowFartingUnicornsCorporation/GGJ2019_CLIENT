@@ -110,11 +110,14 @@ public class Manager : MonoBehaviour
 
 				initGame = true;
 				// Init other players
+				Debug.Log (obj.otherPlayers);
 				otherPlayers = new List<GameObject>();
 				foreach (OtherPlayer op in obj.otherPlayers) {
+					Debug.Log (op.name);
 					var otherPlayer = Instantiate (OtherPlayer, new Vector3 (op.posX, op.posY, op.posY), transform.rotation) as GameObject;
 					otherPlayer.GetComponent<OtherPlayerScript> ().setName (op.name);
 					otherPlayers.Add (otherPlayer);
+					nbOtherPlayers++;
 				}
 
 
@@ -134,6 +137,15 @@ public class Manager : MonoBehaviour
 					}
 				}
 				// update other players
+				if (nbOtherPlayers == 0) {
+					otherPlayers = new List<GameObject>();
+					foreach (OtherPlayer op in obj.otherPlayers) {
+						var otherPlayer = Instantiate (OtherPlayer, new Vector3 (op.posX, op.posY, op.posY), transform.rotation) as GameObject;
+						otherPlayer.GetComponent<OtherPlayerScript> ().setName (op.name);
+						otherPlayers.Add (otherPlayer);
+						nbOtherPlayers++;
+					}
+				}
 
 				foreach (OtherPlayer op in obj.otherPlayers) {
 					foreach (GameObject otherPlayer in otherPlayers){
