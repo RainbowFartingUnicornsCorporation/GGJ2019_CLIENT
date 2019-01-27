@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
     private bool atResource;
     private GameObject instance;
     private Animator animator;
+    private PlayerScript ps;
 
     public float speed = 15;
 
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
         animator = GetComponent<Animator>();
         atHome = false;
         atResource = false;
+        ps = GetComponent<PlayerScript>();
     }
 	
 	// Update is called once per frame
@@ -34,8 +36,14 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool("Right", false);
         animator.SetBool("Up", false);
         animator.SetBool("Down", false);
+        animator.SetBool("Buch", false);
+        animator.SetBool("Drop", false);
 
-        if (Input.GetAxis("Vertical") > 0)
+        if (atHome && ps.inventory > 0)
+            animator.SetBool("Drop", true);
+        else if (atResource && ps.inventory < ps.maxInventory)
+            animator.SetBool("Buch", true);
+        else if (Input.GetAxis("Vertical") > 0)
             animator.SetBool("Up", true);
         else if (Input.GetAxis("Vertical") < 0)
             animator.SetBool("Down", true);
