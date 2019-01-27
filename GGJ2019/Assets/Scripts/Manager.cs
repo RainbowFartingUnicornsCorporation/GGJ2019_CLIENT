@@ -30,10 +30,11 @@ public class Manager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SetupClient();/*
         if (ServerHandler.GetServerHandler().IsUp())
             SetupClient();
         else
-            Debug.LogError("Server is not up at game start");
+            Debug.LogError("Server is not up at game start");*/
     }
 
     // Update is called once per frame
@@ -83,9 +84,7 @@ public class Manager : MonoBehaviour
 			string str = Encoding.UTF8.GetString(buffer.Array);
             RootObject obj = JsonUtility.FromJson<RootObject>(str);
 
-			if (initGame == false) { 
-
-			
+			if (initGame == false) {			
 				// Init home
 				//home = Instantiate (Home, new Vector3 (0, 0, 0), transform.rotation) as GameObject;
 				Home.GetComponent<HomeScript>().UpdateHome (obj.home);
@@ -105,7 +104,6 @@ public class Manager : MonoBehaviour
 					ressource.GetComponent<RessourceScript> ().UpdateRessource (rsc);
 					ressources.Add (ressource);
 				}
-
 
 				initGame = true;
 				// Init Flux
@@ -129,8 +127,11 @@ public class Manager : MonoBehaviour
 
     public async void SetupClient()
     {
+        Debug.Log("Connecting to server");
         clientWebSocket = new ClientWebSocket();
-        Uri uri = new Uri("ws://127.0.0.1:8080");
+        string address = "ws://" + ServerHandler.GetServerHandler().GetIp() + ":8080";
+        Debug.Log("Address: "+address);
+        Uri uri = new Uri(address);
         await clientWebSocket.ConnectAsync(uri, CancellationToken.None);
         Debug.Log("Connected to server");
 
@@ -144,9 +145,7 @@ public class Manager : MonoBehaviour
     void OnApplicationQuit()
     {
         ServerHandler.GetServerHandler().StopServer();
-    }
-
-    
+    }    
 }
 
 [System.Serializable]

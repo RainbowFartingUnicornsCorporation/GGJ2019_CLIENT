@@ -4,6 +4,15 @@ public class ServerHandler
 {
     private static ServerHandler serverHandler;
     private System.Diagnostics.Process serverProcess;
+    public static string Ip = "192.168.0.100";
+
+    public string GetIp()
+    {
+        if (IsUp())
+            return "127.0.0.1";
+
+        return Ip;
+    }
 
     public static ServerHandler GetServerHandler()
     {

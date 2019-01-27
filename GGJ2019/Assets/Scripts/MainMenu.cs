@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
     public bool IsDebug = false;
+    public GameObject[] ObjectsToDestroy;
+    public GameObject CanvasToEnable;
+    public Text IpText;
 
     public void StartAloneButtonPressed()
     {
@@ -13,16 +17,26 @@ public class MainMenu : MonoBehaviour {
 
     public void StartHostingButtonPressed()
     {
-        Debug.Log("Button host was pressed!");
-        ServerHandler.GetServerHandler().StartServer(IsDebug);
+        Debug.Log("Button quit was pressed!");
+        Application.Quit();
     }
 
     public void JoinServerButtonPressed()
     {
-        Debug.Log("Button join was pressed!");
+        foreach (GameObject go in ObjectsToDestroy)
+        {
+            Destroy(go);
+        }
+        CanvasToEnable.SetActive(true);
     }
 
-    void OnApplicationQuit()
+    public void JoinButtonPressed()
+    {
+        ServerHandler.Ip = IpText.text;
+        SceneManager.LoadScene("GameScreen", LoadSceneMode.Single);
+    }
+
+void OnApplicationQuit()
     {
         ServerHandler.GetServerHandler().StopServer();
     }
