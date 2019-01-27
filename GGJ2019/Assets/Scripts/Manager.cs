@@ -100,7 +100,7 @@ public class Manager : MonoBehaviour
                 // Init Ressource
                 ressources = new List<GameObject>();
 				foreach (Ressource rsc in obj.ressources) {
-					var ressource = Instantiate (Ressource, new Vector3 (rsc.posX, rsc.posY, 0), transform.rotation) as GameObject;
+					var ressource = Instantiate (Ressource, new Vector3 (rsc.posX, rsc.posY, rsc.posY), transform.rotation) as GameObject;
 					Debug.Log (ressource);
 					ressource.GetComponent<RessourceScript> ().UpdateRessource (rsc);
 					ressources.Add (ressource);
