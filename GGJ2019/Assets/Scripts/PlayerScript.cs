@@ -36,6 +36,10 @@ public class PlayerScript : MonoBehaviour {
 		maxInventory = playerRef.maxInventory;
 		inventory = playerRef.inventory;
 
+        if (food <= 0)
+        {
+            GameOver.GetInstance().SetActive(true);
+        }
 
 		maxFoodText.GetComponent<Text>().text = "/ "+maxFood.ToString();
 		maxInventoryText.GetComponent<Text>().text = "/ "+maxInventory.ToString();
