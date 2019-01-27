@@ -89825,6 +89825,8 @@ MonoBehaviour:
   Player: {fileID: 1779539888380574, guid: 5df5256ebdaa7f341a7afc031c71af61, type: 2}
   Flux: {fileID: 1562433616246550, guid: 4fca83370535cd54a8ecc8e7976e8592, type: 2}
   Ressource: {fileID: 1353737619387470, guid: fd4579907928bb34a82db3cc9dc4eca0, type: 2}
+  OtherPlayer: {fileID: 1143812069290150, guid: 51ffe4d6f4c7f774e8d3548e2d422dc4,
+    type: 2}
   mainCamera: {fileID: 1476295109}
 --- !u!4 &1388722504
 Transform:

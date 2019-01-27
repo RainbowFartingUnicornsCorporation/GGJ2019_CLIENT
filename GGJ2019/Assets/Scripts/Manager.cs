@@ -15,11 +15,14 @@ public class Manager : MonoBehaviour
 	public GameObject Player;
 	public GameObject Flux;
 	public GameObject Ressource;
+	public GameObject OtherPlayer;
 	public Camera mainCamera;
 
 	private GameObject player;
 	private GameObject home;
 	private List<GameObject> ressources;
+	private List<GameObject> otherPlayers;
+	private int nbOtherPlayers = 0;
 
 	private bool initGame = false;
 
@@ -106,7 +109,16 @@ public class Manager : MonoBehaviour
 				}
 
 				initGame = true;
-				// Init Flux
+				// Init other players
+				otherPlayers = new List<GameObject>();
+				foreach (OtherPlayer op in obj.otherPlayers) {
+					var otherPlayer = Instantiate (OtherPlayer, new Vector3 (op.posX, op.posY, op.posY), transform.rotation) as GameObject;
+					otherPlayer.GetComponent<OtherPlayerScript> ().setName (op.name);
+					otherPlayers.Add (otherPlayer);
+				}
+
+
+
 
 			} else {
 				// update Home
@@ -118,6 +130,15 @@ public class Manager : MonoBehaviour
 					foreach (GameObject rsc in ressources){
 						if (rsc.GetComponent<RessourceScript> ().getId () == rscData.id) {
 							rsc.GetComponent<RessourceScript> ().UpdateRessource (rscData);
+						}
+					}
+				}
+				// update other players
+
+				foreach (OtherPlayer op in obj.otherPlayers) {
+					foreach (GameObject otherPlayer in otherPlayers){
+						if (otherPlayer.GetComponent<OtherPlayerScript> ().name == op.name) {
+							otherPlayer.GetComponent<OtherPlayerScript> ().UpdatePosition (op.posX,op.posY);
 						}
 					}
 				}
@@ -161,11 +182,19 @@ public class Ressource
 }
 
 [System.Serializable]
-public class Player
+public class OtherPlayer
 {
-    public int type;
 	public string name;
     public int posX;
+	public int posY;
+}
+
+[System.Serializable]
+public class Player
+{
+	public int type;
+	public string name;
+	public int posX;
 	public int posY;
 	public int food;
 	public int inventory;
@@ -187,8 +216,9 @@ public class Home
 [System.Serializable]
 public class RootObject
 {
-    public int test;
-    public List<Ressource> ressources;
+	public int test;
+	public List<Ressource> ressources;
+	public List<OtherPlayer> otherPlayers;
     public Player player;
     public Home home;
 }
