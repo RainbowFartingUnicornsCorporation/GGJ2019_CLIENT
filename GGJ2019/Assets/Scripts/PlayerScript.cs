@@ -15,13 +15,8 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject foodText;
 	public GameObject inventoryText;
 
-	// Use this for initialization
-	void Start () { // Get data from initisalization
-	}
-
-
 	void MoveTo (float x, float y) {
-		transform.position = new Vector3 (x, y, 0);
+		transform.position = new Vector3 (x, y, y);
 	}
 
 	public void UpdatePlayer(Player playerRef){

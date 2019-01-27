@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour {
 
         Transform transform = GetComponent<Transform>();
 
-        float translationX = speed * Input.GetAxis("Vertical") * Time.deltaTime;
-        float translationY = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+        float translationX = speed * Input.GetAxis("Horizontal") * Time.deltaTime;
+        float translationY = speed * Input.GetAxis("Vertical") * Time.deltaTime;
 
         animator.SetBool("Left", false);
         animator.SetBool("Right", false);
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
         else if (Input.GetAxis("Horizontal") > 0)
             animator.SetBool("Right", true);
 
-        transform.Translate(translationY, translationX, 0);
+        transform.Translate(translationX, translationY, translationY);
 
         if (atResource && Input.GetButtonDown("Action"))
         {
